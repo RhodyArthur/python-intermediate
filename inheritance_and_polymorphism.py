@@ -62,3 +62,36 @@ class Manager(Employee):
 
     def calculate_salary(self):
         return super().calculate_salary() + (self.team_size * 1000)
+    
+
+# Task 2.3: Abstract Shape Hierarchy (9 points)
+# Create an abstract base class `Shape` with:
+# - Abstract method `area()`
+# - Abstract method `perimeter()`
+
+# Create three concrete classes:
+# - `Circle` with radius
+# - `Rectangle` with length and width
+# - `Triangle` with three sides
+
+# Each should implement the abstract methods correctly.
+
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self, *args):
+        pass
+
+    @abstractmethod
+    def perimeter(self, *args):
+        pass
+
+class Circle(Shape):
+    pi = 3.147
+    def area(self, radius):
+        return Circle.pi * radius ** 2
+    
+    def perimeter(self, radius):
+        return 2 * Circle.pi * radius
