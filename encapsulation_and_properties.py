@@ -82,3 +82,11 @@ class BankAccountSecure:
         self.__account_number = account_number
         self.__balance = balance
         self.__pin = pin
+
+    @property
+    def account_number(self):
+        return self.__account_number
+    
+    @property
+    def balance(self):
+        return self.__balance
