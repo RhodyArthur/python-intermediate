@@ -89,7 +89,7 @@ class Shape(ABC):
         pass
 
 class Circle(Shape):
-    pi = 3.147
+    pi = 3.142
 
     def __init__(self, radius):
         self.radius = radius
@@ -119,7 +119,7 @@ class Triangle(Shape):
 
     def area(self):
         half_peri = (self.length + self.width + self.height) / 2
-        return (half_peri * (half_peri - self.length) * (half_peri - self.width) * (half_peri - self.height)) ** 1/2 
+        return (half_peri * (half_peri - self.length) * (half_peri - self.width) * (half_peri - self.height)) ** 0.5 
 
     def perimeter(self):
         return self.length + self.width + self.height
