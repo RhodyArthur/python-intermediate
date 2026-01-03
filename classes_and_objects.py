@@ -106,3 +106,33 @@ print(MathHelper.is_prime(15))
 print(MathHelper.is_prime(7))
 print(MathHelper.factorial(5))
 print(MathHelper.fibonacci(6))
+
+# Task 1.4: Magic Methods (5 points)
+# Create a `Product` class with:
+# - Attributes: `name`, `price`, `quantity`
+# - `__str__` method for readable representation
+# - `__repr__` method for detailed representation
+# - `__eq__` method to compare products by name
+# - `__lt__` method to compare products by price (for sorting)
+
+class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def __str__(self):
+        return f"Product name: {self.name} \n Price: ${self.price} \n Quantity: {self.quantity}"
+    
+    def __repr__(self):
+        return f"Product(name={self.name!r}, price={self.price!r}, quantity={self.quantity!r})"
+
+    def __eq__(self, other):
+        if isinstance(other, Product):
+            return self.name == other.name
+        return False
+    
+    def __lt__(self, other):
+        if isinstance(other, Product):
+            return self.price < other.price
+        return NotImplemented
