@@ -81,17 +81,56 @@ from abc import ABC, abstractmethod
 class Shape(ABC):
 
     @abstractmethod
-    def area(self, *args):
+    def area(self):
         pass
 
     @abstractmethod
-    def perimeter(self, *args):
+    def perimeter(self):
         pass
 
 class Circle(Shape):
     pi = 3.147
-    def area(self, radius):
-        return Circle.pi * radius ** 2
+
+    def __init__(self, radius):
+        self.radius = radius
+        
+    def area(self):
+        return Circle.pi * self.radius ** 2
     
-    def perimeter(self, radius):
-        return 2 * Circle.pi * radius
+    def perimeter(self):
+        return 2 * Circle.pi * self.radius
+    
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+    
+    def perimeter(self):
+        return (2 * self.length) + (2 * self.width)
+    
+class Triangle(Shape):
+    def __init__(self, length, width, height):
+        self.length = length
+        self.width = width
+        self.height = height
+
+    def area(self):
+        half_peri = (self.length + self.width + self.height) / 2
+        return (half_peri * (half_peri - self.length) * (half_peri - self.width) * (half_peri - self.height)) ** 1/2 
+
+    def perimeter(self):
+        return self.length + self.width + self.height
+    
+shapes = [
+    Circle(5),
+    Rectangle(4, 6),
+    Triangle(3, 4, 5)
+]
+
+for shape in shapes:
+    print(type(shape).__name__)
+    print("Area:", shape.area())
+    print("Perimeter:", shape.perimeter())
