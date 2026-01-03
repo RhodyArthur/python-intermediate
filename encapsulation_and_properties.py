@@ -78,4 +78,7 @@ print(temp.celsius)
 # - Method `change_pin(old_pin, new_pin)` that changes pin if old_pin is correct
 
 class BankAccountSecure:
-    pass
+    def __init__(self, account_number, balance, pin):
+        self.__account_number = account_number
+        self.__balance = balance
+        self.__pin = pin
