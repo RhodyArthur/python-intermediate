@@ -90,3 +90,8 @@ class BankAccountSecure:
     @property
     def balance(self):
         return self.__balance
+    
+    def deposit(self, amount, pin):
+        if pin != self.__pin:
+            raise ValueError("Pin mismatch")
+        self.__balance = self.balance + amount
