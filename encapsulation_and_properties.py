@@ -95,3 +95,8 @@ class BankAccountSecure:
         if pin != self.__pin:
             raise ValueError("Pin mismatch")
         self.__balance = self.balance + amount
+
+    def withdraw(self, amount, pin):
+        if pin != self.__pin or amount > self.__balance:
+            raise ValueError("Pin is incorrect and insufficient balance")
+        self.__balance = self.__balance - amount
