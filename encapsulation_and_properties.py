@@ -25,3 +25,46 @@ user = User("alice")
 user.set_password("secret123")
 print(user.check_password("secret123"))
 print(user.check_password("wrong")) 
+
+# Task 3.2: Property Decorators (5 points)
+# Create a `Temperature` class with:
+# - Private attribute `__celsius`
+# - Property `celsius` with getter and setter (setter validates value >= -273.15)
+# - Property `fahrenheit` with getter and setter (converts to/from celsius)
+# - Property `kelvin` with getter (read-only, converts from celsius)
+
+class Temperature:
+    def __init__(self, celsius):
+        self.__celsius = celsius
+
+    @property
+    def celsius(self):
+        return self.__celsius
+    
+    @celsius.setter
+    def celsius(self, value):
+        if value >= -273.15:
+            self.__celsius = value
+        else:
+            raise ValueError("Temperature must be greater than or equal to -273.15")
+    
+    @property
+    def fahrenheit(self):
+        return (self.celsius * (9/5)) + 32
+    
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self.__celsius = (value - 32) * (5/9)
+            
+
+    @property
+    def kelvin(self):
+        return self.celsius + 273.15
+    
+temp = Temperature(25)
+print(temp.celsius)      # 25
+print(temp.fahrenheit)   # 77.0
+print(temp.kelvin)       # 298.15
+
+temp.fahrenheit = 32
+print(temp.celsius)
