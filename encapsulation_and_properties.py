@@ -79,9 +79,11 @@ print(temp.celsius)
 
 class BankAccountSecure:
     def __init__(self, account_number, balance, pin):
+        if balance < 0:
+            raise ValueError("Balance cannot be negative")
         self.__account_number = account_number
         self.__balance = balance
-        self.__pin = pin
+        self.__pin = str(pin)
 
     @property
     def account_number(self):
@@ -94,11 +96,15 @@ class BankAccountSecure:
     def deposit(self, amount, pin):
         if pin != self.__pin:
             raise ValueError("Pin mismatch")
+        if amount < 0:
+            raise ValueError("Amount must be positive")
         self.__balance = self.balance + amount
 
     def withdraw(self, amount, pin):
-        if pin != self.__pin or amount > self.__balance:
-            raise ValueError("Pin is incorrect and insufficient balance")
+        if pin != self.__pin:
+            raise ValueError("Incorrect PIN")
+        if amount > self.__balance:
+            raise ValueError("Insufficient balance")
         self.__balance = self.__balance - amount
 
     def change_pin(self, old_pin, new_pin):
