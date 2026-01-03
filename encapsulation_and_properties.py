@@ -96,13 +96,15 @@ class BankAccountSecure:
     def deposit(self, amount, pin):
         if pin != self.__pin:
             raise ValueError("Pin mismatch")
-        if amount < 0:
+        if amount <= 0:
             raise ValueError("Amount must be positive")
         self.__balance = self.balance + amount
 
     def withdraw(self, amount, pin):
         if pin != self.__pin:
             raise ValueError("Incorrect PIN")
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
         if amount > self.__balance:
             raise ValueError("Insufficient balance")
         self.__balance = self.__balance - amount
