@@ -17,7 +17,8 @@ class Book:
     
     def apply_discount(self, percentage):
         discount = self.price * (percentage/100)
-        return self.price - discount
+        self.price = self.price - discount
+        return self.price
     
     def __str__(self):
         return f"Title: {self.title} \n Author: {self.author} \n Number of pages {self.pages} \n Price: ${self.price}"
@@ -68,3 +69,40 @@ print(acc1.deposit(200))
 print(acc2.withdraw(1500))
 
 print(BankAccount.get_bank_info())
+
+# Task 1.3: Static Methods (5 points)
+# Create a `MathHelper` class with static methods:
+# - `is_even(number)` - returns True if number is even
+# - `is_prime(number)` - returns True if number is prime
+# - `factorial(n)` - returns factorial of n
+# - `fibonacci(n)` - returns the nth Fibonacci number
+
+class MathHelper:
+    @staticmethod
+    def is_even(number):
+        return number % 2 == 0
+
+    @staticmethod
+    def is_prime(number):
+        if number < 2: return False
+        for num in range(2, number):
+            if number % num == 0:
+                return False
+        return True
+    
+    @staticmethod
+    def factorial(n):
+        if n == 0: return 1
+        return n * MathHelper.factorial(n-1)
+    
+    @staticmethod
+    def fibonacci(n):
+        if n == 0: return 0
+        if n == 1: return 1
+        return MathHelper.fibonacci(n-1) + MathHelper.fibonacci(n-2)
+    
+print(MathHelper.is_even(4))
+print(MathHelper.is_prime(15))
+print(MathHelper.is_prime(7))
+print(MathHelper.factorial(5))
+print(MathHelper.fibonacci(6))
