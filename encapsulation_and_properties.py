@@ -68,3 +68,14 @@ print(temp.kelvin)       # 298.15
 
 temp.fahrenheit = 32
 print(temp.celsius)
+
+# Task 3.3: Full Encapsulation Example (5 points)
+# Create a `BankAccountSecure` class with:
+# - Private attributes: `__account_number`, `__balance`, `__pin`
+# - Properties for account_number (read-only) and balance (read-only)
+# - Method `deposit(amount, pin)` that adds to balance if pin is correct
+# - Method `withdraw(amount, pin)` that subtracts if pin is correct and sufficient funds
+# - Method `change_pin(old_pin, new_pin)` that changes pin if old_pin is correct
+
+class BankAccountSecure:
+    pass
