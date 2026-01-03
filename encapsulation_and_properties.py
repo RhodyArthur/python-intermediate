@@ -100,3 +100,8 @@ class BankAccountSecure:
         if pin != self.__pin or amount > self.__balance:
             raise ValueError("Pin is incorrect and insufficient balance")
         self.__balance = self.__balance - amount
+
+    def change_pin(self, old_pin, new_pin):
+        if self.__pin != old_pin:
+            raise ValueError("Incorrect old pin")
+        self.__pin = new_pin
