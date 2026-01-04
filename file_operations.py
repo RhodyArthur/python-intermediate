@@ -54,8 +54,10 @@ def save_students_csv(filename, students):
         writer.writeheader()
         writer.writerows(students)
 
-# def load_students_csv(filename):
-#     pass
+def load_students_csv(filename):
+    with open(filename) as f:
+        reader = csv.DictReader(f)
+    return reader
 
 # def add_student_csv(filename, student):
 #     pass
