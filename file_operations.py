@@ -121,21 +121,38 @@ def get_config_value(filename, key, default=None):
 def safe_read_file(filename):
     try:
         with open(filename) as f:
-            return f.read()
-        return True
+            content = f.read()
+        return {'success': True, 'content': content, 'message': 'File read successfully'}
     except FileNotFoundError:
-        return 'File not found'
+        return {'success': False, 'content': None, 'message': 'File not found'}
 
 
 def safe_write_file(filename, content):
     try:
         with open(filename, 'w') as f:
             f.write(content)
-        return True
+        return 'File written successfully'
     except PermissionError:
-        return 'You do not have the right permissions to write to this file'
+        return 'Permission denied: Cannot write to this file'
+    except FileNotFoundError:
+        return 'Directory not found'
+    except Exception as e:
+        return f'Error writing file: {str(e)}'
 
 
 def copy_file(source, destination):
-    # Your code here - return (success: bool, message: str)
-    pass
+    try:
+        with open(source, 'r') as src:
+            content = src.read()
+        
+        with open(destination, 'w') as dest:
+            dest.write(content)
+        
+        return 'File copied successfully'
+    
+    except FileNotFoundError:
+        return f'Source file "{source}" not found'
+    except PermissionError:
+        return 'Permission denied'
+    except Exception as e:
+        return f'Error copying file: {str(e)}'
