@@ -8,17 +8,32 @@
 from datetime import datetime
 
 def write_log(filename, message):
-    # Your code here
-    pass
+    with open(filename, 'a') as f:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"{timestamp} - {message}\n")
+
 
 def read_log(filename):
     try:
         with open(filename, 'r') as f:
-            lines = f.readlines
+            lines = f.readlines()
         return lines
     except FileNotFoundError:
-        return "File not found"
+        return []
+    
 
 def count_words_in_file(filename):
-    # Your code here
-    pass
+    word_frequency = {}
+    try:
+        with open(filename, 'r') as f:
+            content = f.read()
+
+            for word in content.split():
+                if word in word_frequency:
+                    word_frequency[word] += 1
+                else:
+                    word_frequency[word] = 1
+        return word_frequency
+
+    except FileNotFoundError:
+        return {}
