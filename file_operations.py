@@ -55,9 +55,13 @@ def save_students_csv(filename, students):
         writer.writerows(students)
 
 def load_students_csv(filename):
-    with open(filename) as f:
-        reader = csv.DictReader(f)
-    return reader
+    try: 
+        with open(filename) as f:
+            reader = csv.DictReader(f)
+        return reader
+    except FileNotFoundError:
+        return []
+
 
 # def add_student_csv(filename, student):
 #     pass
