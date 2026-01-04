@@ -47,8 +47,8 @@ def count_words_in_file(filename):
 
 import csv
 
+headers = ['id', 'name', 'age', 'grade']
 def save_students_csv(filename, students):
-    headers = ['id', 'name', 'age', 'grade']
     with open(filename, 'w', newline="") as f:
         writer = csv.DictWriter(f, fieldnames=headers)
         writer.writeheader()
@@ -63,8 +63,19 @@ def load_students_csv(filename):
         return []
 
 
-# def add_student_csv(filename, student):
-#     pass
+def add_student_csv(filename, student):
+    with open(filename, 'a', newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writerow(student)
 
-# def find_student_by_id(filename, student_id):
-#     pass
+def find_student_by_id(filename, student_id):
+    try: 
+        with open(filename) as f:
+            reader = csv.DictReader(f)
+
+            for row in reader:
+                if row['id'] == student_id:
+                    return row
+        return reader
+    except FileNotFoundError:
+        return []
