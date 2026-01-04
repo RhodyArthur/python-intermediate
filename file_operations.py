@@ -79,3 +79,33 @@ def find_student_by_id(filename, student_id):
         return None
     except FileNotFoundError:
         return None
+    
+# Task 4.3: JSON Operations (5 points)
+# Create a configuration manager:
+# - `save_config(filename, config_dict)` - saves configuration to JSON with nice formatting
+# - `load_config(filename)` - loads and returns configuration dict
+# - `update_config(filename, key, value)` - updates a specific key in the config
+# - `get_config_value(filename, key, default=None)` - gets a value or returns default
+
+import json
+
+def save_config(filename, config_dict):
+    with open(filename, 'w') as f:
+        json.dump(config_dict, f, indent=4)
+
+
+def load_config(filename):
+    try:
+        with open(filename) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+def update_config(filename, key, value):
+    config_dict = load_config(filename)
+    config_dict[key] = value
+    save_config(filename, config_dict)
+
+def get_config_value(filename, key, default=None):
+    config_dict = load_config(filename)
+    return config_dict.get(key, default)
