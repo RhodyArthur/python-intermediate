@@ -78,4 +78,4 @@ def find_student_by_id(filename, student_id):
                     return row
         return None
     except FileNotFoundError:
-        return {}
+        return None
