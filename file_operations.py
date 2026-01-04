@@ -109,3 +109,33 @@ def update_config(filename, key, value):
 def get_config_value(filename, key, default=None):
     config_dict = load_config(filename)
     return config_dict.get(key, default)
+
+
+# Task 4.4: File Operations with Error Handling (5 points)
+# Create a robust file reader:
+# - `safe_read_file(filename)` - reads file content, handles FileNotFoundError
+# - `safe_write_file(filename, content)` - writes content, handles PermissionError
+# - `copy_file(source, destination)` - copies file with proper error handling
+# - All functions should return appropriate messages on success/failure
+
+def safe_read_file(filename):
+    try:
+        with open(filename) as f:
+            return f.read()
+        return True
+    except FileNotFoundError:
+        return 'File not found'
+
+
+def safe_write_file(filename, content):
+    try:
+        with open(filename, 'w') as f:
+            f.write(content)
+        return True
+    except PermissionError:
+        return 'You do not have the right permissions to write to this file'
+
+
+def copy_file(source, destination):
+    # Your code here - return (success: bool, message: str)
+    pass
