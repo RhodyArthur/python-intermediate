@@ -34,3 +34,31 @@ def count_words_in_file(filename):
 
     except FileNotFoundError:
         return {}
+    
+
+# Task 4.2: CSV Operations (5 points)
+# Create a student management system with CSV:
+# - `save_students_csv(filename, students)` - saves list of student dicts to CSV
+# - `load_students_csv(filename)` - loads students from CSV and returns list of dicts
+# - `add_student_csv(filename, student)` - appends a new student to existing CSV
+# - `find_student_by_id(filename, student_id)` - finds and returns student dict
+
+# Student dict format: `{'id': 1, 'name': 'Alice', 'age': 20, 'grade': 'A'}`
+
+import csv
+
+def save_students_csv(filename, students):
+    headers = ['id', 'name', 'age', 'grade']
+    with open(filename, 'w', newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(students)
+
+# def load_students_csv(filename):
+#     pass
+
+# def add_student_csv(filename, student):
+#     pass
+
+# def find_student_by_id(filename, student_id):
+#     pass
