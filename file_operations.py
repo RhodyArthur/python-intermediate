@@ -58,7 +58,7 @@ def load_students_csv(filename):
     try: 
         with open(filename) as f:
             reader = csv.DictReader(f)
-        return reader
+            return list(reader)
     except FileNotFoundError:
         return []
 
@@ -74,8 +74,8 @@ def find_student_by_id(filename, student_id):
             reader = csv.DictReader(f)
 
             for row in reader:
-                if row['id'] == student_id:
+                if row['id'] == str(student_id):
                     return row
-        return reader
+        return None
     except FileNotFoundError:
-        return []
+        return {}
