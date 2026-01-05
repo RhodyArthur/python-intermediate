@@ -55,3 +55,7 @@ def calculate_sum(a, b):
 @validate_positive
 def divide(a, b):
     return a / b
+
+print(calculate_sum(5,3))
+print(divide(10,2))
+# print(divide(-10,2))
