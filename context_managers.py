@@ -8,15 +8,15 @@ def read_multiple_files(filenames):
     Handle missing files gracefully
     """
     files  = {}
-    try:
-        for filename in filenames:
+    for filename in filenames:
+        try:
             with open(filename) as f:
                 content = f.read()
                 files[filename] = content
-        return files
 
-    except FileNotFoundError:
-        return 'File not found'
+        except FileNotFoundError:
+            files[filename] = None
+    return files
 
 
 
@@ -25,4 +25,9 @@ def write_transaction_log(transactions):
     Write transactions to a file using context manager
     Each transaction should be on a new line with timestamp
     """
-    pass
+    from datetime import datetime
+
+    with open('transactions.log', 'a') as f:
+        for transaction in transactions:
+            timestamp = datetime.now().strftime('%Y-%m-%d - %H:%M:%S')
+            f.write(f'{timestamp}-{transaction}\n')
