@@ -79,3 +79,53 @@ class BankSystem:
         if account_id not in self.accounts:
             raise AccountNotFoundError("Account not found")
         return self.accounts[account_id]
+
+# Task 5.3: Exception Chain and Finally (7 points)
+# Create a file processor with comprehensive error handling:
+
+import json
+class FileProcessor:
+    def process_data_file(self, filename):
+        """
+        This method should:
+        1. Open and read a JSON file
+        2. Validate that it contains a 'data' key with a list
+        3. Process each item (convert strings to uppercase)
+        4. Write results to a new file
+        5. Use try/except/else/finally appropriately
+        6. Handle: FileNotFoundError, JSONDecodeError, KeyError
+        7. Always close resources in finally block (or use context managers)
+        8. Return success status and message
+        """
+        try:
+            with open(filename) as f:
+                content = json.load(f)
+                
+                if ('data' not in content or not isinstance(content['data'], list)):
+                    raise KeyError('"data" must be a list')
+                result = [str(item).upper() for item in content['data']]
+            
+            output_file = f'{filename}_processed.json'
+
+            with open(output_file, 'w') as f:
+                json.dump({'data':result}, f, indent=4)
+
+        except FileNotFoundError:
+            return False, "File not found"
+        except json.JSONDecodeError as e:
+            return False, "Invalid JSON file"
+        except KeyError as e:
+            return (False, str(e))
+        else:
+            return (True, 'Result wriiten successfully')
+        finally:
+            print('Processing completed')
+            
+    
+    def batch_process_files(self, filenames):
+        """
+        Process multiple files and collect results
+        Continue processing even if one file fails
+        Return a summary of successes and failures
+        """
+        pass
