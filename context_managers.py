@@ -60,3 +60,40 @@ class Timer:
         if exc_type:
             print(f"Exception: {exc_val}")
         return False
+    
+# Task 6.3: Function-based Context Manager (6 points)
+# Create context managers using `@contextmanager`:
+
+from contextlib import contextmanager
+import os
+@contextmanager
+def temporary_file(filename):
+    """
+    Context manager that creates a file on entry
+    and deletes it on exit
+    Yields the file handle for writing
+    """
+    file = None
+    try:
+        file = open(filename, 'w')
+        yield file
+    finally:
+        if file:
+            file.close()
+        if os.path.exists(filename):
+            os.remove(filename)
+
+@contextmanager
+def database_connection(db_name):
+    """
+    Simulates database connection
+    Prints "Connected to {db_name}" on entry
+    Prints "Disconnected from {db_name}" on exit
+    Yields a mock connection object (can be a dict)
+    """
+    print(f"Connected to {db_name}")
+    connection = {"database": db_name, "status": "connected"}
+    try:
+        yield connection
+    finally:
+        print(f"Disconnected from {db_name}")
