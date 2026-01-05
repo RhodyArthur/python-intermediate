@@ -14,9 +14,17 @@ def safe_divide(a, b):
         return result
 
 def safe_int_convert(value):
-    # Your code here
-    pass
+    try:
+        result = int(value)
+    except ValueError:
+        return "Wrong value passed"
+    else:
+        return result
 
 def safe_list_access(lst, index):
-    # Your code here
-    pass
+    try:
+        result = lst[index]
+    except IndexError:
+        return "Index out of range"
+    else:
+        return result
