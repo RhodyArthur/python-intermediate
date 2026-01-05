@@ -105,7 +105,9 @@ class FileProcessor:
                     raise KeyError('"data" must be a list')
                 result = [str(item).upper() for item in content['data']]
             
-            output_file = f'{filename}_processed.json'
+            import os
+            base_name = os.path.splitext(filename)[0]
+            output_file = f'{base_name}_processed.json'
 
             with open(output_file, 'w') as f:
                 json.dump({'data':result}, f, indent=4)
@@ -117,7 +119,7 @@ class FileProcessor:
         except KeyError as e:
             return (False, str(e))
         else:
-            return (True, 'Result wriiten successfully')
+            return (True, 'Result written successfully')
         finally:
             print('Processing completed')
             
@@ -128,4 +130,16 @@ class FileProcessor:
         Continue processing even if one file fails
         Return a summary of successes and failures
         """
-        pass
+        summary = []
+        for filename in filenames:
+            try:
+                success, message = self.process_data_file(filename)
+            except Exception as e:
+                success = False
+                message = f"Unexpected error: {e}"
+            summary.append({
+                'file': filename,
+                "success": success,
+                "message": message
+            })
+        return summary
