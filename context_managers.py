@@ -8,15 +8,15 @@ def read_multiple_files(filenames):
     Handle missing files gracefully
     """
     files  = {}
-    for filename in filenames:
-        try:
+    try:
+        for filename in filenames:
             with open(filename) as f:
                 content = f.read()
                 files[filename] = content
-            return files
+        return files
 
-        except FileNotFoundError:
-            return 'File not found'
+    except FileNotFoundError:
+        return 'File not found'
 
 
 
