@@ -31,3 +31,32 @@ def write_transaction_log(transactions):
         for transaction in transactions:
             timestamp = datetime.now().strftime('%Y-%m-%d - %H:%M:%S')
             f.write(f'{timestamp}-{transaction}\n')
+
+#  Task 6.2: Class-based Context Manager (6 points)
+# Create a `Timer` context manager as a class:
+import time
+class Timer:
+    """
+    Context manager that measures execution time
+    
+    Usage:
+        with Timer("My Operation"):
+            # code to time
+        
+    Should print: "My Operation took 1.23 seconds"
+    """
+    def __init__(self, name):
+        self.name = name
+        self.start_time = None
+    
+    def __enter__(self):
+        self.start_time = time.time()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        end_time = time.time()
+        elapsed = end_time - self.start_time
+        print(f"{self.name} took {elapsed:.2f} seconds")
+        if exc_type:
+            print(f"Exception: {exc_val}")
+        return False
