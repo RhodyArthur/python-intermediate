@@ -102,7 +102,7 @@ class FileProcessor:
                 content = json.load(f)
                 
                 if ('data' not in content or not isinstance(content['data'], list)):
-                    raise KeyError('"data" must be a list')
+                    raise KeyError('File must contain "data" key with a list')
                 result = [str(item).upper() for item in content['data']]
             
             import os
