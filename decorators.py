@@ -1,7 +1,7 @@
 # Task 7.1: Simple Decorators (5 points)
 # Create these function decorators:
 from time import time
-
+from functools import wraps
 def timer(func):
     """
     Decorator that prints execution time of function
@@ -18,7 +18,11 @@ def logger(func):
     """
     Decorator that prints function name and arguments before execution
     """
-    pass
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f'{func.__name__} {args, kwargs}')
+        func()
+    return wrapper
 
 def validate_positive(func):
     """
