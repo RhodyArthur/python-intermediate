@@ -10,10 +10,16 @@ def reverse_string(s):
 
 def is_palindrome(s):
     cleaned_s = "".join(s.split()).lower()
-    reverse_string = cleaned_s[::-1]
 
-    if cleaned_s == reverse_string:
+    if cleaned_s == cleaned_s[::-1]:
         return True
     else:
         return False
-print(is_palindrome('A man a plan a canal Panama'))
+    
+def word_count(s):
+    wc = {}
+
+    for word in s.lower().split():
+        wc[word] = wc.get(word, 0) +1
+    return wc
+print(word_count('A man a plan a canal Panama man'))
