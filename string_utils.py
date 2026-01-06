@@ -18,7 +18,6 @@ def is_palindrome(s):
     
 def word_count(s):
     wc = {}
-
     for word in s.lower().split():
         wc[word] = wc.get(word, 0) +1
     return wc
