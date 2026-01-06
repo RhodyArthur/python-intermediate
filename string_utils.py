@@ -21,4 +21,8 @@ def word_count(s):
     for word in s.lower().split():
         wc[word] = wc.get(word, 0) +1
     return wc
-print(word_count('A man a plan a canal Panama man'))
+
+def title_case(s):
+    return " ".join(word[0].upper()+word[1::] for word in s.split())
+    
+print(title_case('A man a plan a canal Panama man'))
