@@ -37,3 +37,34 @@ def file_line_generator(filename):
     except FileNotFoundError:
         return
 
+
+# Task 8.2: Custom Iterator Class (5 points)
+# Create an iterator class:
+
+class RangeIterator:
+    """
+    Custom iterator that works like range()
+    
+    Usage:
+        for i in RangeIterator(1, 10, 2):
+            print(i)  # 1, 3, 5, 7, 9
+    """
+    def __init__(self, start, stop, step=1):
+        self.start = start
+        self.stop = stop
+        self.step = step
+        self.current = start
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.current >= self.stop:
+            raise StopIteration
+        else:
+            value = self.current
+            self.current += self.step
+            return value
+
+for i in RangeIterator(1, 5, 2):
+    print(i)
