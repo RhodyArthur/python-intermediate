@@ -65,6 +65,3 @@ class RangeIterator:
             value = self.current
             self.current += self.step
             return value
-
-for i in RangeIterator(1, 5, 2):
-    print(i)
