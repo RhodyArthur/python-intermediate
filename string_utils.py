@@ -6,15 +6,11 @@
 # - `title_case(s)` - converts to title case without using .title()
 
 def reverse_string(s):
-    return "".join(s.split()).lower()[::-1]
+    return s[::-1]
 
 def is_palindrome(s):
     cleaned_s = "".join(s.split()).lower()
-
-    if cleaned_s == cleaned_s[::-1]:
-        return True
-    else:
-        return False
+    return cleaned_s == cleaned_s[::-1]
     
 def word_count(s):
     wc = {}
@@ -23,6 +19,5 @@ def word_count(s):
     return wc
 
 def title_case(s):
-    return " ".join(word[0].upper()+word[1::] for word in s.split())
+    return " ".join(word[0].upper()+word[1:].lower() for word in s.split())
     
-print(title_case('A man a plan a canal Panama man'))
