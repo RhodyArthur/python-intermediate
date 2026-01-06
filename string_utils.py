@@ -6,6 +6,14 @@
 # - `title_case(s)` - converts to title case without using .title()
 
 def reverse_string(s):
-    return s.lower().strip()[::-1]
+    return "".join(s.split()).lower()[::-1]
 
-print(reverse_string('cat is home'))
+def is_palindrome(s):
+    cleaned_s = "".join(s.split()).lower()
+    reverse_string = cleaned_s[::-1]
+
+    if cleaned_s == reverse_string:
+        return True
+    else:
+        return False
+print(is_palindrome('A man a plan a canal Panama'))
