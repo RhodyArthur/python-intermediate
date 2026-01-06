@@ -7,6 +7,7 @@ def even_numbers(n):
     """
     count = 0
     num = 2
+
     while count < n:
         yield num
         num += 2
@@ -16,11 +17,23 @@ def fibonacci_generator(n):
     """
     Generator that yields first n Fibonacci numbers
     """
-    pass
+    count = 0
+    x, y = 0, 1
+
+    while count < n:
+        yield x
+        x, y = y, x + y
+        count += 1
 
 def file_line_generator(filename):
     """
     Generator that yields lines from a file one at a time
     Strips whitespace from each line
     """
-    pass
+    try:
+        with open(filename) as f:
+            for line in f:
+                yield line.strip()
+    except FileNotFoundError:
+        return
+
