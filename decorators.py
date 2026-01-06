@@ -59,3 +59,41 @@ def divide(a, b):
 print(calculate_sum(5,3))
 print(divide(10,2))
 # print(divide(-10,2))
+
+# Task 7.2: Decorators with Arguments (5 points)
+# Create decorators that accept arguments:
+
+def repeat(times):
+    """
+    Decorator that repeats function execution
+    @repeat(3)
+    def greet(): ...
+    """
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(times):
+                result = func(*args, **kwargs)
+                return result
+        return wrapper
+    return decorator
+
+def retry(max_attempts):
+    """
+    Decorator that retries function if it raises an exception
+    @retry(3)
+    def unstable_function(): ...
+    """
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(1, max_attempts+1):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                        if attempt == max_attempts:
+                            raise
+                        print(f"Attempt {attempt} failed: {e}. Retrying...")
+            return None
+        return wrapper
+    return decorator
