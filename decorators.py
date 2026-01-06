@@ -97,3 +97,28 @@ def retry(max_attempts):
             return None
         return wrapper
     return decorator
+
+
+# Task 7.3: Class Decorator (5 points)
+# Create a class that works as a decorator:
+
+class CountCalls:
+    """
+    Decorator that counts how many times a function is called
+    
+    Usage:
+        @CountCalls
+        def my_func():
+            pass
+        
+        my_func()
+        my_func()
+        print(my_func.call_count)  # 2
+    """
+    def __init__(self, func):
+        self.func = func
+        self.call_count = 0
+    
+    def __call__(self, *args, **kwargs):
+        self.call_count += 1
+        return self.func(*args, **kwargs)
