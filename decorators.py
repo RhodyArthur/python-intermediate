@@ -1,6 +1,6 @@
 # Task 7.1: Simple Decorators (5 points)
 # Create these function decorators:
-from time import time
+import time
 from functools import wraps
 def timer(func):
     """
@@ -36,11 +36,11 @@ def validate_positive(func):
     def wrapper(*args, **kwargs):
         for arg in args:
             if (isinstance(arg, (int, float)) and arg < 0):
-                raise ValueError(f"All arguments must be positve. Got {arg}")
+                raise ValueError(f"All arguments must be positive. Got {arg}")
             
         for value in kwargs.values():
             if (isinstance(value, (int, float)) and value < 0):
-                raise ValueError(f"All arguments must be positve. Got {arg}")
+                raise ValueError(f"All arguments must be positvie. Got {arg}")
         result = func(*args, **kwargs)
         return result
     return wrapper
