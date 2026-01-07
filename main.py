@@ -1,5 +1,5 @@
-from math_utils import *
-from string_utils import *
+from math_utils import lcm, gcd, mean, is_prime
+from string_utils import is_palindrome, reverse_string, word_count, title_case
 
 def main():
     # ============================================================
