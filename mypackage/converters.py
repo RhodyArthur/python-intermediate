@@ -9,10 +9,14 @@ def celsius_to_fahrenheit(c):
 
 def km_to_miles(km):
     """
-    convert disrance from kilometers to miles
+    convert distance from kilometers to miles
     :param km: distance in km
     """
     return km * 0.6214
 
-print(celsius_to_fahrenheit(25))
-print(km_to_miles(1))
+def kg_to_pounds(kg):
+    """
+    Convert weight from kg to pounds
+    :param kg: weight in kn
+    """
+    return kg * 2.205
