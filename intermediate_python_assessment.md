@@ -1,4 +1,4 @@
-# Intermediate Python Assessment - Weeks 3-6
+# Intermediate Python Assessment - Weeks 3-4
 
 **Total Points: 150 (140 base + 10 bonus)**
 
@@ -8,7 +8,7 @@
 - Complete all tasks in Python file(s)
 - Test your code to ensure it works correctly
 - Create actual files for file I/O operations
-- Don't use external libraries except where specified (requests, csv, json)
+- Don't use external libraries except where specified (csv, json)
 - Focus on proper OOP principles and error handling
 
 ---
@@ -681,84 +681,6 @@ from mypackage.converters import celsius_to_fahrenheit
 ```
 
 ---
-
-## SECTION 10: HTTP & REST APIs with requests (15 points)
-
-### Task 10.1: Basic API Requests (5 points)
-Using the JSONPlaceholder API (https://jsonplaceholder.typicode.com):
-
-```python
-import requests
-
-def get_all_posts():
-    """
-    Fetch all posts from /posts endpoint
-    Return list of post dictionaries
-    Handle network errors
-    """
-    pass
-
-def get_post_by_id(post_id):
-    """
-    Fetch a specific post by ID
-    Return post dictionary or None if not found
-    """
-    pass
-
-def create_post(title, body, user_id):
-    """
-    Create a new post using POST request
-    Return the created post dictionary
-    """
-    pass
-```
-
-### Task 10.2: Advanced API Client (10 points)
-Create a GitHub API client class:
-
-```python
-class GitHubClient:
-    BASE_URL = "https://api.github.com"
-    
-    def __init__(self, token=None):
-        """
-        Initialize with optional authentication token
-        """
-        pass
-    
-    def get_user(self, username):
-        """
-        Get user information
-        Handle 404 for non-existent users
-        Return user dict or None
-        """
-        pass
-    
-    def get_user_repos(self, username):
-        """
-        Get all repositories for a user
-        Return list of repo dicts
-        """
-        pass
-    
-    def search_repositories(self, query, language=None):
-        """
-        Search repositories by query
-        Optional language filter
-        Return search results
-        """
-        pass
-    
-    def handle_rate_limit(self):
-        """
-        Check rate limit status
-        Return remaining requests count
-        """
-        pass
-```
-
----
-
 ## BONUS SECTION: Integrated Mini-Project (10 points)
 
 ### Create a Contact Management System
@@ -811,6 +733,50 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## BONUS SECTION: Integrated Mini-Project (10 points)
+### Create a Task Management System
+Build a complete task management system that combines all concepts:
+**Requirements:**
+
+**Data Model (OOP)**
+
+- Task class with: id, title, description, status, priority, due_date
+- TaskManager class to manage multiple tasks
+- Proper encapsulation and validation
+- Use properties for status validation (must be: "pending", "in_progress", "completed")
+
+
+**Persistence (File I/O)**
+
+- Save tasks to JSON file
+- Load tasks from JSON file
+- Auto-save on modifications
+
+
+**Error Handling**
+
+- Custom exceptions: TaskNotFoundError, InvalidTaskStatusError
+- Handle file operation errors gracefully
+
+
+**Features (Methods in TaskManager)**
+
+- add_task(task) - add a new task
+- get_task(task_id) - get task by ID
+- update_task(task_id, **updates) - update task fields
+- delete_task(task_id) - remove a task
+- list_tasks(status=None) - list all tasks or filter by status
+- mark_completed(task_id) - mark task as completed
+- Save and load methods
+
+
+**Additional Requirements**
+
+- Use context managers for file operations
+- Use decorators to log all operations
+- Use generators for listing large numbers of tasks
+- Proper exception handling throughout
 
 ---
 
