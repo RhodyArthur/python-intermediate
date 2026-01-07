@@ -2,21 +2,21 @@
 
 def celsius_to_fahrenheit(c):
     """
-    Covert temperature from celsius to fahrenheit
+    Convert temperature from celsius to fahrenheit
     :param c: temperature in celsius
     """
     return (c * 9/5) + 32
 
 def km_to_miles(km):
     """
-    convert distance from kilometers to miles
+    Convert distance from kilometers to miles
     :param km: distance in km
     """
-    return km * 0.6214
+    return km * 0.621371
 
 def kg_to_pounds(kg):
     """
     Convert weight from kg to pounds
-    :param kg: weight in kn
+    :param kg: weight in km
     """
-    return kg * 2.205
+    return kg * 2.20462
